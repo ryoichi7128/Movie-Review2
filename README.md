@@ -11,17 +11,24 @@ Movie-Review
 みておしまいとなってしまうことが多くて、あとで内容を思い出せなかったりするので
 映画をみた感想や評価をつけれて他のユーザーと共有できたらと思ったから。
 
+[一番アピールしたいポイント]  
+ダッシュボードを使い複数の評価データを見やすく分かりやすく表示させる
+
+評価の観点
+・物語
+・演出(映像、音)
+・配役
+
 [ターゲットユーザ]  
 映画好きで、レビューを書いてみたい人、また他の人の感想を知りたい人。
 映画の感想を参考に見るものを決めたい人。
 
 [主な利用シーン]  
-映画をみたあと感想を書く時
+映画をみたあと感想を書く時  
 見たい映画を探す時
 
 設計書
 
 機能一覧  
-<https://docs.google.com/spreadsheets/d/1cUSGnPHoYPthRui5XujEj7D72lC3iM_mznSasOCYYuU/edit?usp=sharing>
-
+https://docs.google.com/spreadsheets/d/1tC36NmKvIgLYUSS-6eNVpdwtsR31MVAsP0_EIEeMEJU/edit?usp=sharing
 
