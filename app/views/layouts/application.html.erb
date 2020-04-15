@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MovieReview</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+  <div class="container">
+
+    <nav class="nav navbar-nav navbar-left">
+
+    <span>Movie-Review</span>
+
+    </nav>
+
+  <nav>
+
+    <ul class="nav navbar-nav navbar-right">
+
+      <% if user_signed_in? %>
+
+      <li class="">
+        <%= link_to "#" do %>
+        <span class= "glyphicon glyphicon-home home" > Home</span>
+        <% end %>
+      </li>
+
+      <li class="">
+        <%= link_to "#" do %>
+        <span class= "glyphicon glyphicon-user users" > Users</span>
+        <% end %>
+      </li>
+
+      <li class="">
+        <%= link_to destroy_user_session_path, method: :delete do %>
+        <span class= "glyphicon glyphicon-log-out logout" > logout</span>
+        <% end %>
+      </li>
+
+      <% else %>
+
+      <li class="">
+        <%= link_to root_path do %>
+        <span class= "glyphicon glyphicon-home home" > Home</span>
+        <% end %>
+      </li>
+
+      <li class="">
+        <%= link_to new_user_registration_path do %>
+        <span class= "glyphicon glyphicon-edit sign_up" > Sign up</span>
+        <% end %>
+      </li>
+
+      <li class="">
+        <%= link_to new_user_session_path do %>
+        <span class= "glyphicon glyphicon-log-in sign_in" > Login</span>
+        <% end %>
+      </li>
+
+      <% end %>
+
+
+</ul>
+</nav>
+
+</div>
+
+
+
+    <%= yield %>
+  </body>
+</html>
