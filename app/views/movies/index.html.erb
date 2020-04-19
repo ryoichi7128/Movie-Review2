@@ -1,2 +1,16 @@
 <h1>Movies#index</h1>
-<p>Find me in app/views/movies/index.html.erb</p>
+
+<% @base_contents.each do |m| %>
+
+<div>
+
+<%= link_to movies_show_path(m["id"]) do %>
+<%= image_tag("https://image.tmdb.org/t/p/original/#{m['poster_path']}",:size =>"320x480") %>
+</div>
+
+
+<% end %>
+
+<% end %>
+
+
