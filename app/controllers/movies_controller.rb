@@ -25,7 +25,8 @@ class MoviesController < ApplicationController
       json = Net::HTTP.get(uri)
     # rubyで扱える形に成形している
       @movie_info =JSON.parse(json)
-    # @movie_info = respose_data["results"]
+    # パラメータと同じレコードを取得
+      @reviews = Review.where(movie_id: params[:id] )
   end
 
 

@@ -1,10 +1,33 @@
-<h1>Review</h1>
 
-<%= form_for(@review) do |f| %>
+<div class= "container">
+	<div class="row">
 
-<h4>感想</h4>
-<%= f.text_area :body %>
+		<div class="col-xs-3">
+			<h3><%= @movie_info['title'] %></h3>
+			<%= image_tag("https://image.tmdb.org/t/p/original#{@movie_info['poster_path']}", :alt => 'poster',:size =>'320x480') %>
+		</div>
 
-<p><%= f.submit "投稿する", class: "btn btn-primary col-xs-12" %></p>
+		<div class="col-xs-7 offset-md-2">
+			<h4>レビュー</h4>
+			<%= form_for(@review) do |f| %>
+			<%= f.hidden_field :movie_id, :value => @movie_id %>
+			<%= f.text_area :body, size: "50x5"%>
+			<div id="star">
+				<%= f.label :rate, '評価'  %>
+				<%= f.hidden_field :rate, id: :review_star %>
+			</div>
+			<p><%= f.submit "投稿する", class: "btn btn-warning" %></p>
+			<% end %>
+		</div>
+	</div>
+</div>
 
-<% end %>
+<script>
+$('#star').raty({
+  size     : 36,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  scoreName: 'review[rate]',
+  half: true,
+});
+</script>

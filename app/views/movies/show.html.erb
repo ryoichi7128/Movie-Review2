@@ -1,22 +1,55 @@
-<h1><%= @movie_info['title'] %></h1>
+<div class="container">
+    <h3><%= @movie_info['title'] %></h3>
+    <div class="row">
+        <div class="col-xs-3" >
+            <%= image_tag("https://image.tmdb.org/t/p/original#{@movie_info['poster_path']}", :alt => 'poster',:size =>'320x480') %>
+        </div>
+        <div class="col-xs-9">
+            <p><strong>上映日：</strong><%= @movie_info['release_date'] %></p>
+            <p><strong>上映時間：</strong><%= @movie_info['runtime'] %>分</p>
+            <p>
+                <strong>ジャンル：</strong>
+                <% @movie_info['genres'].each do |genre| %>
+                    <% if genre == @movie_info['genres'].last %>
+                        <span><%= genre['name'] %></span>
+                    <% else %>
+                        <span><%= genre['name'] %>、</span>
+                    <% end %>
+                <% end %>
+            </p>
+            <p><strong>ストーリ：</strong><%= @movie_info['overview'] %></p>
+            <%= link_to "レビューを投稿する",  reviews_new_path(@movie_info["id"]), class: "btn btn-warning" %>
+        </div>
+    </div>
 
-<p><strong>上映日：</strong><%= @movie_info['release_date'] %></p>
 
-<p><strong>上映時間：</strong><%= @movie_info['runtime'] %>分</p>
-
-<p>
-    <strong>ジャンル：</strong>
-    <% @movie_info['genres'].each do |genre| %>
-        <% if genre == @movie_info['genres'].last %>
-            <span><%= genre['name'] %></span>
-        <% else %>
-            <span><%= genre['name'] %>、</span>
-        <% end %>
-    <% end %>
-</p>
-
-<p><strong>ストーリ：</strong><%= @movie_info['overview'] %></p>
-
-<%= image_tag("https://image.tmdb.org/t/p/original#{@movie_info['poster_path']}", :alt => 'poster',:size =>'320x480') %>
-
-<%= link_to "レビューを投稿する",  reviews_new_path(@movie_info['id']), class: "btn btn-primary col-xs-12" %>
+    <p><strong><ユーザ’sレビュー></strong></p>
+    <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>ネーム</th>
+            <th>評価</th>
+            <th>レビュー</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% @reviews.each do |review| %>
+              <tr>
+                  <td>
+                      <%= link_to user_path(review.user_id) do %>
+                      <%= attachment_image_tag review.user, :image, :fill, 50, 50, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+                      <% end %>
+                  </td>
+                  <td><%= review.user::name %></td>
+                  <td><%= review.rate %></td>
+                  <td>
+                      <%= link_to review_path(review.id) do %>
+                      <%= review.body %>
+                      <% end %>
+                  </td>
+              </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
