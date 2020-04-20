@@ -1,2 +1,30 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h3>プロフィール編集</h3>
+
+<%= form_for(@user) do |f| %>
+
+<h4>名前</h4>
+
+<%= f.text_field :name %>
+
+<h4>性別</h4>
+
+<%= f.radio_button :sex, :male %>
+<%= f.label :sex, "男性", {value: :male, style: "display: inline-block;"} %>
+<%= f.radio_button :sex, :female %>
+<%= f.label :sex, "女性", {value: :female, style: "display: inline-block;"} %>
+
+<h4>年齢</h4>
+
+<%= f.select :age, ["20代", "30代", "40代", "50代", "60代以上"], :prompt => "選択してください" %>
+
+<h4>プロフィール画像</h4>
+
+<%= f.attachment_field :image %>
+
+<h4>自己紹介文</h4>
+
+<%= f.text_area :profile %>
+
+<%= f.submit "更新", class: "btn btn-success btn-block", style: "width: 100px;" %>
+
+<% end %>

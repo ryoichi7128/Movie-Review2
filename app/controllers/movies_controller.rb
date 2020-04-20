@@ -5,14 +5,14 @@ class MoviesController < ApplicationController
   require 'json'
 
   def index
-      # APIを取ってくるサーバーを指定する
+    # APIを取ってくるサーバーを指定する
       search_uri = "https://api.themoviedb.org/3/movie/now_playing?api_key=#{ENV['API_KEY']}&language=ja-JA"
-      # その形式を変換している,URIをリクエスト送れる形に変える
+    # その形式を変換している,URIをリクエスト送れる形に変える
       enc_uri =URI.encode(search_uri)
       uri =URI.parse(enc_uri)
-      # リクエストを送って取ってきている
+    # リクエストを送って取ってきている
       json = Net::HTTP.get(uri)
-      # rubyで扱える形に成形している
+    # rubyで扱える形に成形している
       movies =JSON.parse(json)
       @base_contents = movies["results"]
   end
@@ -21,11 +21,11 @@ class MoviesController < ApplicationController
       search_uri = "https://api.themoviedb.org/3/movie/#{params[:id]}?api_key=#{ENV['API_KEY']}&language=ja-JA"
       enc_uri =URI.encode(search_uri)
       uri =URI.parse(enc_uri)
-      # リクエストを送って取ってきている
+    # リクエストを送って取ってきている
       json = Net::HTTP.get(uri)
-      # rubyで扱える形に成形している
+    # rubyで扱える形に成形している
       @movie_info =JSON.parse(json)
-      # @movie_info = respose_data["results"]
+    # @movie_info = respose_data["results"]
   end
 
 
