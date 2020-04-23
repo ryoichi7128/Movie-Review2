@@ -1,12 +1,12 @@
-<h1>レビュー編集</h1>
+<h3>レビュー編集</h3>
 
 <%= form_for(@review) do |f| %>
 
-<h4>感想</h4>
+<p><strong>レビュー内容</strong></p>
 
-<%= f.text_area :body %>
+<%= f.text_area :body ,size: "50x5"%>
 
-<%= f.submit "更新" %>
+<%= f.submit "更新", class: "btn btn-warning" %>
 
 <% end %>
 

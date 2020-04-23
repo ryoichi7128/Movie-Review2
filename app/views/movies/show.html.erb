@@ -19,6 +19,16 @@
             </p>
             <p><strong>ストーリ：</strong><%= @movie_info['overview'] %></p>
             <%= link_to "レビューを投稿する",  reviews_new_path(@movie_info["id"]), class: "btn btn-warning" %>
+        
+
+
+        <% if !Favorite.exists?(user_id:current_user.id, movie_id:@movie.id) %>
+    <%= link_to "お気に入り", movie_favorites_path(@movie),method: :post %>
+    <% else %>
+    <%= link_to "お気に入り解除", movie_favorites_path(@movie),method: :delete %>
+    <% end %>
+
+
         </div>
     </div>
 

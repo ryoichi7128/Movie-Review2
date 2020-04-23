@@ -7,13 +7,30 @@
 <%= link_to user_path(@review.user_id) do %>
 <%= attachment_image_tag @review.user, :image, fallback: "no_image.jpg", size: '50x50'%><br>
 <% end %>
-<%= @review.body %>
+<strong>(レビュー内容)</strong>
+<p><%= @review.body %></p>
 
 <!-- もしカレントユーザーと本の持つユーザーIDが同じなら -->
+<p>
 <% if current_user.id == @review.user_id %>
 	<div><%= link_to "編集", edit_review_path(@review.id), class: "btn-sm btn-success " %>
 	<%= link_to "削除", review_path(@review.id), method: :delete, "data-confirm" => "Are you sure？", class: " btn-sm btn-danger "   %></div>
 <% end %>
+</p>
+  	<div>
+          <p class="mb-3">評価：<%= @review.rate %>点 </p>
+      </div>
 
-  
-          <h4 class="mb-3">評価：<%= @review.rate %>点 </h4>
+
+  <div id="star-rate-<%= @review.id %>"></div>
+          <script>
+          $('#star-rate-<%= @review.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= @review.rate %>,
+          });
+          </script>  

@@ -1,4 +1,4 @@
-<span>ニックネーム</span><h3><%= @user.name %></h3>
+<p>ニックネーム:<%= @user.name %></p>
 <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
 <% if @user.id == current_user.id %>
   <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "" %></p>

@@ -10,9 +10,12 @@ Rails.application.routes.draw do
   resources :reviews, only: [:create, :show, :edit, :update, :destroy]
 
   get 'movies/index'
-  get 'movies/search'
   get '/movies/show/:id', to: 'movies#show', as: 'movies_show'
   root to: 'movies#index'
+  resources :movies, only: [:index, :show] do
+  resource :favorites, only: [:create, :destroy]
+  end
+  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
