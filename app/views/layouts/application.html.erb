@@ -4,81 +4,94 @@
     <title>MovieReview</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/61a2307a04.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <style>
+  ul.navbar-nav li {
+  margin-right: 10px;
+  }
+  </style>
+
   <body>
+    <header class="navbar-inverse">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <!-- タイトル・ロゴ -->
+        <a class="navbar-brand" href="/">Movie-Review</a>
+        <!-- レスポスシブ対応 -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+        </button>
 
-  <div class="container">
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
 
-    <nav class="nav navbar-nav navbar-left">
+              <% if user_signed_in? %>
 
-    <span>Movie-Review</span>
+                <li class="nav-item">
+                  <%= link_to root_path do %>
+                  <i class="fas fa-video"></i><span> Top</span>
+                  <% end %>
+                </li>
 
-    </nav>
+                <li class="nav-item">
+                  <%= link_to user_path(current_user) do %>
+                  <i class="fas fa-user"></i><span> my page</span>
+                  <% end %>
+                </li>
 
-  <nav>
+                <li class="nav-item">
+                  <%= link_to destroy_user_session_path, method: :delete do %>
+                  <i class="fas fa-sign-out-alt"></i><span> logout</span>
+                  <% end %>
+                </li>
 
-    <ul class="nav navbar-nav navbar-right">
+              <% else %>
 
-      <% if user_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to homes_about_path do %>
+                  <i class="fas fa-exclamation-circle"></i><span> about</span>
+                  <% end %>
+                </li>
 
-      <li class="">
-        <%= link_to root_path do %>
-        <span class= "glyphicon glyphicon-home home" > Top</span>
-        <% end %>
-      </li>
+                <li class="nav-item">
+                  <%= link_to root_path do %>
+                  <i class="fas fa-video"></i><span> Top</span>
+                  <% end %>
+                </li>
 
-      <li class="">
-        <%= link_to user_path(current_user) do %>
-        <span class= "glyphicon glyphicon-user users" > my page</span>
-        <% end %>
-      </li>
+                <li class="nav-item">
+                  <%= link_to new_user_registration_path do %>
+                  <i class="fas fa-user-plus"></i><span> Sign up</span>
+                  <% end %>
+                </li>
 
-      <li class="">
-        <%= link_to destroy_user_session_path, method: :delete do %>
-        <span class= "glyphicon glyphicon-log-out logout" > logout</span>
-        <% end %>
-      </li>
+                <li class="nav-item">
+                  <%= link_to new_user_session_path do %>
+                  <i class="fas fa-sign-in-alt"></i><span> Login</span>
+                  <% end %>
+                </li>
 
-      <% else %>
-
-      <li class="">
-        <%= link_to homes_about_path do %>
-        <span class= "glyphicon glyphicon-link about" > about</span>
-        <% end %>
-      </li>
-
-      <li class="">
-        <%= link_to root_path do %>
-        <span class= "glyphicon glyphicon-home home" > Top</span>
-        <% end %>
-      </li>
-
-      <li class="">
-        <%= link_to new_user_registration_path do %>
-        <span class= "glyphicon glyphicon-edit sign_up" > Sign up</span>
-        <% end %>
-      </li>
-
-      <li class="">
-        <%= link_to new_user_session_path do %>
-        <span class= "glyphicon glyphicon-log-in sign_in" > Login</span>
-        <% end %>
-      </li>
-
-      <% end %>
-
-
-</ul>
-</nav>
-
-</div>
-
-
-
+              <% end %>
+            </ul>
+          </div>
+          <!-- <form class="form-inline">
+            <input class="form-control mr-sm-1" type="search">
+            <button class="btn btn-primary" type="submit">検索</button>
+        </form> -->
+      </nav>
+    </header>
+    <div class="search-form" style="margin-top: 70px; text-align: center;">
+    <%= form_tag(movie_search_path, method: :get) do %>
+      <%= search_field_tag :search_word, nil, placeholder: 'Movie Title...' %>
+      
+      <%= submit_tag '検索' %>
+    <% end %>
+  </div>
+    <main>
     <%= yield %>
+    </main>
   </body>
 </html>

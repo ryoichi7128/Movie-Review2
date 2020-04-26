@@ -1,10 +1,10 @@
 <div class="container">
-    <h3><%= @movie_info['title'] %></h3>
     <div class="row">
         <div class="col-xs-3" >
-            <%= image_tag("https://image.tmdb.org/t/p/original#{@movie_info['poster_path']}", :alt => 'poster',:size =>'320x480') %>
+            <%= image_tag("https://image.tmdb.org/t/p/w200#{@movie_info['poster_path']}", :alt => 'poster') %>
         </div>
         <div class="col-xs-9">
+            <p><strong>映画タイトル：</strong><%= @movie_info['title'] %></p>
             <p><strong>上映日：</strong><%= @movie_info['release_date'] %></p>
             <p><strong>上映時間：</strong><%= @movie_info['runtime'] %>分</p>
             <p>
@@ -20,26 +20,24 @@
             <p><strong>ストーリ：</strong><%= @movie_info['overview'] %></p>
             <%= link_to "レビューを投稿する",  reviews_new_path(@movie_info["id"]), class: "btn btn-warning" %>
         
-
-
-        <% if !Favorite.exists?(user_id:current_user.id, movie_id:@movie.id) %>
-    <%= link_to "お気に入り", movie_favorites_path(@movie),method: :post %>
-    <% else %>
-    <%= link_to "お気に入り解除", movie_favorites_path(@movie),method: :delete %>
-    <% end %>
-
-
+            <% if !Favorite.exists?(user_id:current_user.id, movie_id:@movie.id) %>
+              <%= link_to movie_favorites_path(@movie),method: :post, class: "btn btn-info" do %>
+                <i class="fas fa-bookmark"></i> お気に入り
+              <% end %>
+              <% else %>
+              <%= link_to movie_favorites_path(@movie),method: :delete do %>
+                <i class="fas fa-bookmark"></i> お気に入り解除
+              <% end %>
+            <% end %>
         </div>
     </div>
 
-
-    <p><strong><ユーザ’sレビュー></strong></p>
-    <table class="table">
+    <table class="table" style="margin-top: 20px;">
         <thead>
           <tr>
             <th></th>
-            <th>ネーム</th>
-            <th>評価</th>
+            <th>ニックネーム</th>
+            <th>評価(5点満点中)</th>
             <th>レビュー</th>
           </tr>
         </thead>
@@ -48,11 +46,11 @@
               <tr>
                   <td>
                       <%= link_to user_path(review.user_id) do %>
-                      <%= attachment_image_tag review.user, :image, :fill, 50, 50, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+                      <%= attachment_image_tag review.user, :image, :fill, 50, 50, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: '50x50' %>
                       <% end %>
                   </td>
                   <td><%= review.user::name %></td>
-                  <td><%= review.rate %></td>
+                  <td><%= review.rate %> 点</td>
                   <td>
                       <%= link_to review_path(review.id) do %>
                       <%= review.body %>
@@ -63,3 +61,7 @@
         </tbody>
     </table>
 </div>
+
+
+
+

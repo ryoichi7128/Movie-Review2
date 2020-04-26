@@ -7,3 +7,11 @@
 
 <h3><自己紹介文></h3>
 <%= @user.profile %>
+
+<h4>ブックマーク</h4>
+
+<% if @movie_info != nil %>
+<%= link_to movies_show_path(@movie_info["id"]) do %>
+<%= image_tag("https://image.tmdb.org/t/p/original/#{@movie_info['poster_path']}",:size =>"200x200") %>
+<% end %>
+  <% end %>

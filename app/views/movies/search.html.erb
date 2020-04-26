@@ -1,17 +1,9 @@
-<h1>映画検索</h1>
-
-<div>
-  <%= form_tag(movies_search_path, method: :get) do %>
-    <%= search_field_tag :looking_for, nil, placeholder: 'Movie Title...' %>
-    <%= submit_tag '検索' %>
-  <% end %>
-</div>
 
 <div>
   <% if @movie_results.blank? %>
-    <p>[<%= @search_term %>]と一致する情報が見つかりませんでした</p>
+    <p>[<%= @word %>]と一致する情報が見つかりませんでした</p>
   <% else %>
-    <p>[<%= @search_term %>]の検索結果</p>
+    <p>[<%= @word %>]の検索結果</p>
     <table border="1">
       <tr>
         <th>ポスター</th>

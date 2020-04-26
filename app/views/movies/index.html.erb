@@ -1,16 +1,23 @@
-<h1>上映中の映画</h1>
+<main style="background-image:url(<%= asset_path "movie.jpg" %>)" />
+<div class="container">
 
-<% @base_contents.each do |m| %>
-
-<div>
-
-<%= link_to movies_show_path(m["id"]) do %>
-<%= image_tag("https://image.tmdb.org/t/p/original/#{m['poster_path']}",:size =>"320x480") %>
+	<h1></h1>
+	<div class="row">
+		<% @base_contents.each do |m| %>
+			<%= link_to movies_show_path(m["id"]) do %>
+			<%= image_tag("https://image.tmdb.org/t/p/original/#{m['poster_path']}",:size =>"200x200") %>
+			<% end %>
+		<% end %>
+	</div>
 </div>
 
+</div>
 
-<% end %>
+<style>
+	main{
+background-size: contain;
+}
 
-<% end %>
 
+</style>
 

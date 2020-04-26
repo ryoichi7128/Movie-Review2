@@ -20,8 +20,8 @@ before_action :authenticate_user!
     if @review.save
        flash[:notice] = "successfully"
        redirect_to review_path(@review.id)
-    else
-       render action: :new
+    # else
+    #    render action: :new
     end
   end
 
