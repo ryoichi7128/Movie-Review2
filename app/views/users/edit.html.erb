@@ -1,4 +1,10 @@
+
+<div class="container">
+
+
 <h3>プロフィール編集</h3>
+
+<div class="row">
 
 <%= form_for(@user) do |f| %>
 
@@ -28,3 +34,21 @@
 <%= f.submit "更新", class: "btn btn-success btn-block", style: "width: 100px;" %>
 
 <% end %>
+</div>
+</div>
+
+
+
+<style>
+
+h3 {
+	border-bottom:solid;
+	text-align: center;
+}
+
+.row {
+	width:20%;
+	margin: 0 auto;
+}
+	</style>
+}

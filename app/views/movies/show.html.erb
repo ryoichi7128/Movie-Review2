@@ -18,8 +18,12 @@
                 <% end %>
             </p>
             <p><strong>ストーリ：</strong><%= @movie_info['overview'] %></p>
+
+            <% if @reviews.where(user_id: 'current_user.id') %>
+       
             <%= link_to "レビューを投稿する",  reviews_new_path(@movie_info["id"]), class: "btn btn-warning" %>
-        
+            <% end %>
+            
             <% if !Favorite.exists?(user_id:current_user.id, movie_id:@movie.id) %>
               <%= link_to movie_favorites_path(@movie),method: :post, class: "btn btn-info" do %>
                 <i class="fas fa-bookmark"></i> お気に入り

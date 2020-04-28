@@ -1,23 +1,30 @@
-<main style="background-image:url(<%= asset_path "movie.jpg" %>)" />
-<div class="container">
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+<h1>上映中の映画作品</h1>
+<div class="container" style="margin: 0 auto;">
 
-	<h1></h1>
-	<div class="row">
 		<% @base_contents.each do |m| %>
+			<div>
 			<%= link_to movies_show_path(m["id"]) do %>
-			<%= image_tag("https://image.tmdb.org/t/p/original/#{m['poster_path']}",:size =>"200x200") %>
+			<%= image_tag("https://image.tmdb.org/t/p/original#{m['poster_path']}", style:"margin-top: 20px;",size:"250x300")%>
 			<% end %>
+			<span><%= m["title"] %></span>
+			</div>
 		<% end %>
-	</div>
-</div>
 
-</div>
+	</div>
+
+
+
 
 <style>
-	main{
-background-size: contain;
-}
-
-
+	h1{
+		margin-top: 20px;
+		text-align: center;
+		border-bottom: 4px solid;
+		color:red;
+		
+	}
 </style>
 

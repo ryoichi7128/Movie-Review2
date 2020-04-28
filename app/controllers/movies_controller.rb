@@ -36,10 +36,11 @@ class MoviesController < ApplicationController
       Movie.create(tmdb_id: params[:id])
    end
 
-    # パラメータと同じレコードを取得
+    # 一つの映画のレビューされたのデータ
       @reviews = Review.where(movie_id: params[:id] )
+    # 
       @movie = Movie.find_by(tmdb_id: params[:id])
-      
+
 
   end
 

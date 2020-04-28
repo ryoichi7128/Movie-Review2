@@ -2,13 +2,13 @@
 <div class= "container">
 	<div class="row">
 
-		<div class="col-xs-3">
-			<h3><%= @movie_info['title'] %></h3>
-			<%= image_tag("https://image.tmdb.org/t/p/original#{@movie_info['poster_path']}", :alt => 'poster',:size =>'320x480') %>
+		<div class="offset-md-1 col-xs-3">
+			<p><%= @movie_info['title'] %><p>
+			<%= image_tag("https://image.tmdb.org/t/p/w200#{@movie_info['poster_path']}", :alt => 'poster') %>
 		</div>
 
-		<div class="col-xs-7 offset-md-2">
-			<h4>レビュー</h4>
+		<div class="offset-md-1 ol-xs-7 ">
+			<p>レビュー</p>
 			<%= form_for(@review) do |f| %>
 			<%= f.hidden_field :movie_id, :value => @movie_id %>
 			<%= f.text_area :body, size: "50x5"%>
