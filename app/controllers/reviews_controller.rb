@@ -20,8 +20,9 @@ before_action :authenticate_user!
     if @review.save
        flash[:notice] = "successfully"
        redirect_to review_path(@review.id)
-    # else
-    #    render action: :new
+    else
+       redirect_to request.referer
+       flash[:notice] = "！入力してください！"
     end
   end
 

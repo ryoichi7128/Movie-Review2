@@ -8,6 +8,7 @@ before_action :authenticate_user!
 
     @favorite = Favorite.where(user_id: @user.id)
 
+
     @book_mark = @favorite.select("movie_id")
 
 

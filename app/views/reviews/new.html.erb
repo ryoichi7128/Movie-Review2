@@ -1,13 +1,20 @@
 
 <div class= "container">
-	<div class="row">
 
+
+	<div class="row">
 		<div class="offset-md-1 col-xs-3">
 			<p><%= @movie_info['title'] %><p>
 			<%= image_tag("https://image.tmdb.org/t/p/w200#{@movie_info['poster_path']}", :alt => 'poster') %>
 		</div>
 
 		<div class="offset-md-1 ol-xs-7 ">
+
+			<% if flash[:notice] %>
+	  <p><%= flash[:notice] %></p>
+	<% end %>
+
+
 			<p>レビュー</p>
 			<%= form_for(@review) do |f| %>
 			<%= f.hidden_field :movie_id, :value => @movie_id %>
@@ -20,7 +27,7 @@
 			<% end %>
 		</div>
 	</div>
-</div>
+
 
 <script>
 $('#star').raty({
@@ -31,3 +38,5 @@ $('#star').raty({
   half: true,
 });
 </script>
+
+</div>
