@@ -13,7 +13,7 @@ before_action :authenticate_user!
 
 
     @movie = Movie.where(id: @book_mark )
-
+    # total = {}
 for movie in @movie
     puts movie
 
@@ -25,8 +25,15 @@ for movie in @movie
       json = Net::HTTP.get(uri)
     # rubyで扱える形に成形している
       @movie_info =JSON.parse(json)
+
+
+
+    # total.merge!(movie_info)
+
   end
 
+  # @total_movie = total
+  
 end
 
   def edit
