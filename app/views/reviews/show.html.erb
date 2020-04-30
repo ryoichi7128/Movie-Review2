@@ -26,6 +26,7 @@
 
 <div id="star-rate-<%= @review.id %>"></div>
           <script>
+          $(document).on('turbolinks:load', function(){
           $('#star-rate-<%= @review.id %>').raty({
             size: 36,
             starOff:  '<%= asset_path('star-off.png') %>',
@@ -34,6 +35,7 @@
             half: true,
             readOnly: true,
             score: <%= @review.rate %>,
+          });
           });
           </script>
 

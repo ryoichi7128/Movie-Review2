@@ -30,6 +30,7 @@
 
 
 <script>
+	$(document).on('turbolinks:load', function(){
 $('#star').raty({
   size     : 36,
   starOff:  '<%= asset_path('star-off.png') %>',
@@ -37,7 +38,7 @@ $('#star').raty({
   // starHalf: "#{asset_path('star-half.png')}",
   scoreName: 'review[rate]',  //reviewモデルのrateカラムに値を保存する
   // half: true,
-});
+});});
 </script>
 
 </div>
