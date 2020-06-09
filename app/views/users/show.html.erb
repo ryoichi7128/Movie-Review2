@@ -5,8 +5,8 @@
 	  <p><%= flash[:notice] %></p>
 	<% end %>
 
-	<%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
-	ニックネーム: <%= @user.name %> <%= @user.age %>　<%= @user.sex %>
+	<%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', class:"rounded-circle icon_image mr-3 mb-3", fallback: "no_image.jpg" %>
+	ニックネーム: <%= @user.name %> <%= @user.age %> <%= @user.sex %>
 	<% if @user.id == current_user.id %>
 	  <p><%= link_to edit_user_path(@user), class: "btn-lg btn-default" do %>
 	  	<i class="fas fa-edit"></i>

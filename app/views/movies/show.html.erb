@@ -19,11 +19,11 @@
             </p>
             <p><strong>ストーリ：</strong><%= @movie_info['overview'] %></p>
 
-            <% if @reviews.where(user_id: 'current_user.id') %>
-       
+            <% if @reviews.where(user_id: current_user.id).exists? %>
+
             <%= link_to "レビューを投稿する",  reviews_new_path(@movie_info["id"]), class: "btn btn-warning" %>
             <% end %>
-            
+
             <% if !Favorite.exists?(user_id:current_user.id, movie_id:@movie.id) %>
               <%= link_to movie_favorites_path(@movie),method: :post, class: "btn btn-info" do %>
                 <i class="fas fa-bookmark"></i> お気に入り
@@ -50,10 +50,10 @@
               <tr>
                   <td>
                       <%= link_to user_path(review.user_id) do %>
-                      <%= attachment_image_tag review.user, :image, :fill, 50, 50, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: '50x50' %>
+                      <%= attachment_image_tag review.user, :image, :fill, 50, 50, format: 'jpeg', class:"rounded-circle icon_image mr-3 mb-3", fallback: "no_image.jpg", size: '50x50' %>
                       <% end %>
                   </td>
-                  <td><%= review.user::name %></td>
+                  <td><%= review.user.name %></td>
                   <td><%= review.rate %> 点</td>
                   <td>
                       <%= link_to review_path(review.id) do %>

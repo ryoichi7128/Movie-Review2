@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :favorites
   #ユーザーがいいねしている映画を取得できるようにthroughオプションを利用した関連付け
   has_many :favorite_movies, through: :favorites
+  has_many :comments
 end

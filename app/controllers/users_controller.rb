@@ -9,32 +9,27 @@ before_action :authenticate_user!
     @favorite = Favorite.where(user_id: @user.id)
 
 
-    @book_mark = @favorite.select("movie_id")
+    @movie_id = @favorite.select("movie_id")
 
 
-    @movie = Movie.where(id: @book_mark )
+    @tmdb_id = Movie.where(id: @movie_id )
     # total = {}
-for movie in @movie
+    for movie in @tmdb_id
     puts movie
 
     search_uri = "https://api.themoviedb.org/3/movie/#{movie.tmdb_id}?api_key=#{ENV['API_KEY']}&language=ja-JA"
-    
     enc_uri =URI.encode(search_uri)
-      uri =URI.parse(enc_uri)
+    uri =URI.parse(enc_uri)
     # リクエストを送って取ってきている
-      json = Net::HTTP.get(uri)
+    json = Net::HTTP.get(uri)
     # rubyで扱える形に成形している
-      @movie_info =JSON.parse(json)
-
-
-
+    @movie_info =JSON.parse(json)
     # total.merge!(movie_info)
-
+    # binding.pry
+    end
+  # @total_movie = total
   end
 
-  # @total_movie = total
-  
-end
 
   def edit
   	@user = User.find(params[:id])

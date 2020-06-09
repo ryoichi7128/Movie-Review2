@@ -16,7 +16,6 @@ before_action :authenticate_user!
   def create
     @review = Review.new(review_params)
     @review.user_id = current_user.id
-   
     if @review.save
        flash[:notice] = "successfully"
        redirect_to review_path(@review.id)
@@ -28,6 +27,8 @@ before_action :authenticate_user!
 
   def show
     @review = Review.find(params[:id])
+    @comments = @review.comments
+    @comment = @review.comments.build
   end
 
   def edit

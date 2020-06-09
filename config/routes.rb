@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
 
   get '/reviews/new/:id', to: 'reviews#new', as: 'reviews_new'
-  resources :reviews, only: [:create, :show, :edit, :update, :destroy]
+  resources :reviews, only: [:create, :show, :edit, :update, :destroy] do
+    resources :comments, only: [:create]
+  end
 
   get 'movies/index'
   get '/movies/show/:id', to: 'movies#show', as: 'movies_show'
@@ -19,4 +21,5 @@ Rails.application.routes.draw do
   get 'search', to: 'movies#search', as: 'movie_search'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 end

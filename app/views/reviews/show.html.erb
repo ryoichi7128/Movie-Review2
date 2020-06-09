@@ -6,12 +6,12 @@
 
 <h3>レビュー詳細</h3>
 <%= link_to user_path(@review.user_id) do %>
-<%= attachment_image_tag @review.user, :image, fallback: "no_image.jpg", size: '50x50'%><br>
+<%= attachment_image_tag @review.user, :image, fallback: "no_image.jpg", size: '50x50',class:"rounded-circle icon_image mr-3 mb-3"%><br>
 <% end %>
 <strong>(レビュー内容)</strong>
 <p><%= @review.body %></p>
 
-<!-- もしカレントユーザーと本の持つユーザーIDが同じなら -->
+<!-- もしカレントユーザーとレビューの持つユーザーIDが同じなら -->
 <p>
 <% if current_user.id == @review.user_id %>
 	<div><%= link_to "編集", edit_review_path(@review.id), class: "btn-sm btn-success " %>
@@ -39,4 +39,29 @@
           });
           </script>
 
+</div>
+
+
+<div class="comment-wrapper border-top　mb-10">
+  <p class="mt-5">コメント一覧</p>
+  <% @comments.each do |c| %>
+    <div>
+      <% unless c.user.blank? %>
+        <%= attachment_image_tag c.user, :image, fallback: "no_image.jpg", size: '50x50',
+          class:"rounded-circle icon_image mr-3 mb-3"%>
+        <% end %>
+      <%= c.user.name unless c.user.blank? %>
+      <br />
+      <%= c.content %>
+    </div>
+    <br />
+  <% end %>
+  <% if user_signed_in? %>
+    <%= form_with(model: [@review, @comment], local: true) do |f| %>
+      <%= f.text_area :content, class: "form-control", rows: 5 %>
+      <%= button_tag type: "submit", class: "btn btn-success float-right mt-1" do %>
+        <i class="far fa-comments"></i> コメントする
+      <% end %>
+    <% end %>
+  <% end %>
 </div>
