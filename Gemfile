@@ -74,5 +74,5 @@ end
 
 gem 'httparty', '0.13.5'
 
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
